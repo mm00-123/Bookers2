@@ -1,0 +1,33 @@
+<% if flash[:notice] %>
+	<p><b><%= flash[:notice] %></b></p>
+<% end %>
+
+<%= render 'books/list', book: @book , user: @user %>
+
+<h1>Books</h1>
+
+<table>
+     <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+　　</tr>
+
+　　<tbody>
+
+　　<% @books.each do |book| %>
+　　<tr>
+　　  <td><%= link_to user_path(book.user_id) do %>
+      <%= attachment_image_tag book.user, :profile_image, :fill, 20, 20, fallback: "no_image.jpg",size:'20x20',format: 'no_image.jpg' %></td>
+      <% end %>
+
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+      <td><%= link_to "edit",  edit_book_path(book.id) , class: "button_custom btn btn-success center-block"%></td>
+      <td><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" , class: "button_custom btn btn-success center-block"%></td>
+    </tr>
+    <% end %>
+    </tbody>
+
+</table>
+
