@@ -1,34 +1,55 @@
-<h2>Sign up</h2>
+<div class="container">
 
-<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <h2>Sign up</h2>
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <span style="color:red">
+            <% if @user.errors.any? %>
+                <h3><%= @user.errors.count %> errors prohibited this user from being saved:</h3>
+                <div id="error_explanation" class="alert alert-danger">
+                    <ul>
+                        <span style="color:red">
+                            <% @user.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                            <% end %>
+                        </span>
+                    </ul>
+                </div>
+            <% end %>
+        </span>
 
-    <div class="field">
-    <%= f.label :neme %><br />
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
+    <div class="row">
+        <div class="col-lg-2">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+            <label>Name</label>
+        <br>
+            <%= f.text_field :name, class: "name" %>
+        <br>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+            <label>Email</label>
+        <br>
+            <%= f.email_field :email, class: "email", id:"inputEmail" %>
+        <br>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+            <label>Password (6 characters minimum)</label>
+        <br>
+            <%= f.password_field :password, autocomplete: "off", class: "password", id:"inputPassword"  %>
+        <br>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+            <label>Password</label>
+        <br>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "password_confirm", id:"inputConfirmPassword" %>
+        <br>
+        <br>
 
-<%= render "devise/shared/links" %>
+            <%= f.submit "Sign up", class: "btn btn-success" %>
+    <% end %>
+        <br>
+            <%= link_to "login", new_user_session_path, class: "sign_in" %>
+        </div>
+
+        <div class="col-xs-3 col-xs-offset-9">
+              <p>CopyRight Infratop.inc</p>
+        </div>
+
+    </div>
+</div>

@@ -3,12 +3,17 @@ class BooksController < ApplicationController
   before_action :ensure_current_user, {only: [:edit,:update,:destroy]}
 
   def create
-     @book = Book.new(book_params)
-     @book.user_id = current_user.id
-     if @book.save
-       redirect_to books_path
-     else
-     end
+        @book = Book.new(book_params)
+        @book.user_id = current_user.id
+        if @book.save
+            flash[:notice] = "successfully."
+            redirect_to book_path(@book)
+        else
+            flash[:notice] = "error"
+            @books = Book.all
+            @user = current_user
+            render :index
+        end
   end
 
   def index
@@ -18,8 +23,8 @@ class BooksController < ApplicationController
   end
 
   def show
-      @book = Book.find(params[:id])
-      @user = @book.user # User.find(@book.user_id)
+      @book = Book.new
+		  @bookdetail = Book.find(params[:id])
   end
 
   def destroy
