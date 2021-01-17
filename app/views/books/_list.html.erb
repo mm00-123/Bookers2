@@ -11,7 +11,7 @@
 <div class="info">
   <h1>User info</h1>
   <div class="profile-container">
-  <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', fallback: "no_image.jpg" %>
+  <%= attachment_image_tag user, :profile_image, :fill, 90, 100, format: 'jpeg', fallback: "no_image.jpg" %>
 
   </div>
 
@@ -29,7 +29,7 @@
             </tbody>
         </table>
         <%= link_to "", edit_user_path(user),  class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
-         <p><%= link_to "", edit_user_path(user),  class: "col-md-10 fas fa-user-cog ,button_custom btn btn-success center-block"%></p>
+         <p><%= link_to "", edit_user_path(user),  class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_13797"%></p>
 
 
 
@@ -47,7 +47,7 @@
       <br>
       <br>
       <div class="actions">
-          <%= f.submit 'Create Book', class: "btn btn-primary col-xs-12" %>
+          <%= f.submit 'Create Book', class: "btn btn-success" %>
       </div>
       <% end %>
 </div>

@@ -18,7 +18,7 @@
 		    		<tbody>
 					  	<% @books.each do |book| %>
                         <td><div><%= link_to user_path(@user.id) do %>
-				        <%= attachment_image_tag(book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg") %>
+				        <%= attachment_image_tag(book.user, :profile_image, :fill, 90, 100, fallback: "no_image.jpg") %>
 				        <% end %></div></td>
 
                         <td><%=link_to book.title, book_path(book.id)%></td>
